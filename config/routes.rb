@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :items
   get 'customers/new'
   get 'customers/create'
   get 'customers/update'
