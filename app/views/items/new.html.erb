@@ -1,9 +1,18 @@
-<h1>New item</h1>
-
-<%= render "form", item: @item %>
-
-<br>
-
-<div>
-  <%= link_to "Back to items", items_path %>
+<div class="container">
+  <h2>Create Item</h2>
+  <%= form_with model: @item, url: items_path, method: :post, class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :desc %>
+      <%= f.text_field :desc, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :shipment_id %>
+      <%= f.text_field :shipment_id, class: "form-control" %>
+    </div>
+    <%= f.submit "Create Item", class: "btn btn-primary" %>
+  <% end %>
 </div>

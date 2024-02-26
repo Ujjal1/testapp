@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Edit Shipment</h2>
+  <%= form_with model: @shipment, url: shipment_path(@shipment), method: :patch, class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :source_location %>
+      <%= f.text_field :source_location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :target_location %>
+      <%= f.text_field :target_location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.text_field :status, class: "form-control" %>
+    </div>
+    <%= f.submit "Update Shipment", class: "btn btn-primary" %>
+  <% end %>
+</div>

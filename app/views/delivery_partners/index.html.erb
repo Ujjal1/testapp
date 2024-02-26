@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Delivery Partners</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @delivery_partners.each do |delivery_partner| %>
+        <tr>
+          <td><%= delivery_partner.name %></td>
+          <td><%= delivery_partner.email %></td>
+          <td>
+            <%= link_to "Edit", edit_delivery_partner_path(delivery_partner), class: "btn btn-sm btn-primary" %>
+            <%= link_to "Delete", delivery_partner, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

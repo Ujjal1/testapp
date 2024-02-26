@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Create Shipment</h2>
+  <%= form_with model: @shipment, url: shipments_path, method: :post, class: "form" do |f| %>
+    <div class="form-group">
+      <%= f.label :source_location %>
+      <%= f.text_field :source_location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :target_location %>
+      <%= f.text_field :target_location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.text_field :status, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :customer_id %>
+      <%= f.text_field :customer_id, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :delivery_partner_id %>
+      <%= f.text_field :delivery_partner_id, class: "form-control" %>
+    </div>
+    <%= f.submit "Create Shipment", class: "btn btn-primary" %>
+  <% end %>
+</div>

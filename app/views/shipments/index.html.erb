@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>Shipments</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Source Location</th>
+        <th>Target Location</th>
+        <th>Status</th>
+        <th>Customer</th>
+        <th>Delivery Partner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipments.each do |shipment| %>
+        <tr>
+          <td><%= shipment.source_location %></td>
+          <td><%= shipment.target_location %></td>
+          <td><%= shipment.status %></td>
+          <td><%= shipment.try(:customer) %></td>
+          <td><%= shipment.try(:delivery_partner) %></td>
+          <td>
+            <%= link_to "Edit", edit_shipment_path(shipment), class: "btn btn-sm btn-primary" %>
+            <%= link_to "Delete", shipment, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

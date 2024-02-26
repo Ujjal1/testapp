@@ -1,6 +1,6 @@
 <div class="container">
-  <h2>Edit customer</h2>
-  <%= form_with model: @customer, url: customer_path(@customer), method: :patch, class: "form" do |f| %>
+  <h2>Edit Delivery Partner</h2>
+  <%= form_with model: @delivery_partner, url: delivery_partner_path(@delivery_partner), method: :patch, class: "form" do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: "form-control" %>
@@ -9,6 +9,6 @@
       <%= f.label :email %>
       <%= f.text_field :email, class: "form-control" %>
     </div>
-    <%= f.submit "Update Customer", class: "btn btn-primary" %>
+    <%= f.submit "Update Delivery Partner", class: "btn btn-primary" %>
   <% end %>
 </div>
