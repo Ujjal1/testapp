@@ -4,31 +4,37 @@ class ShipmentsController < ApplicationController
   # GET /shipments
   def index
     @shipments = Shipment.all
-    render json: @shipments
   end
 
   # GET /shipments/1
   def show
-    render json: @shipment
   end
 
   # POST /shipments
   def create
     @shipment = Shipment.new(shipment_params)
 
-    if @shipment.save
-      render json: @shipment, status: :created, location: @shipment
-    else
-      render json: @shipment.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @shipment.save
+        format.html { redirect_to shipment_url(@shipment), notice: "shipment was successfully created." }
+        format.json { render :show, status: :created, location: @shipment }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @shipment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /shipments/1
   def update
-    if @shipment.update(shipment_params)
-      render json: @shipment
-    else
-      render json: @shipment.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @shipment.save
+        format.html { redirect_to shipment_url(@shipment), notice: "shipment was successfully created." }
+        format.json { render :show, status: :created, location: @shipment }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @shipment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -45,6 +51,6 @@ class ShipmentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shipment_params
-      params.require(:shipment).permit(:source_location, :target_location, :customer_id, :delivery_partner_id, :status)
+      params.permit(:source_location, :target_location, :customer_id, :delivery_partner_id, :status)
     end
 end

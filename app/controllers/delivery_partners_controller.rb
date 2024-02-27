@@ -4,31 +4,35 @@ class DeliveryPartnersController < ApplicationController
   # GET /delivery_partners
   def index
     @delivery_partners = DeliveryPartner.all
-    render json: @delivery_partners
   end
 
   # GET /delivery_partners/1
   def show
-    render json: @delivery_partner
   end
 
   # POST /delivery_partners
   def create
     @delivery_partner = DeliveryPartner.new(delivery_partner_params)
 
-    if @delivery_partner.save
-      render json: @delivery_partner, status: :created, location: @delivery_partner
-    else
-      render json: @delivery_partner.errors, status: :unprocessable_entity
+    respond_to do |format|
+      if @delivery_partner.save
+        format.html { redirect_to delivery_partner_url(@delivery_partner), notice: "Deliver partner was successfully created." }
+        format.json { render :show, status: :created, location: @delivery_partner }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @delivery_partner.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /delivery_partners/1
   def update
-    if @delivery_partner.update(delivery_partner_params)
-      render json: @delivery_partner
+    if @delivery_partner.save
+      format.html { redirect_to delivery_partner_url(@delivery_partner), notice: "Deliver partner was successfully updated." }
+      format.json { render :show, status: :ok, location: @delivery_partner }
     else
-      render json: @delivery_partner.errors, status: :unprocessable_entity
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @delivery_partner.errors, status: :unprocessable_entity }
     end
   end
 
@@ -45,6 +49,6 @@ class DeliveryPartnersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def delivery_partner_params
-      params.require(:delivery_partner).permit(:name, :email, :address)
+      params.permit(:name, :email, :address)
     end
 end

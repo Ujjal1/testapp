@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @delivery_partner %>
+
+<div>
+  <%= link_to "Edit this item", edit_delivery_partner_path(@delivery_partner) %> |
+  <%= link_to "Back to items", delivery_partners_path %>
+
+  <%= button_to "Destroy this item", @delivery_partner, method: :delete %>
+</div>

@@ -1,2 +1,10 @@
-<h1>Customers#show</h1>
-<p>Find me in app/views/customers/show.html.erb</p>
+<p style="color: green"><%= notice %></p>
+
+<%= render @customer %>
+
+<div>
+  <%= link_to "Edit this item", edit_customer_path(@customer) %> |
+  <%= link_to "Back to items", customers_path %>
+
+  <%= button_to "Destroy this item", @customer, method: :delete %>
+</div>
